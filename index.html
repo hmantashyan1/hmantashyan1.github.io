@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hayk — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #faf9f7;
+    --text: #1a1814;
+    --muted: #7a7570;
+    --accent: #2d5a3d;
+    --line: #e4e0da;
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    z-index: 100;
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* SECTIONS */
+  section {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  section + section {
+    border-top: 1px solid var(--line);
+  }
+
+  /* HERO */
+  #about {
+    padding-top: 10rem;
+    padding-bottom: 6rem;
+  }
+
+  .hero-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 580px;
+    color: var(--text);
+  }
+
+  /* SECTION HEADERS */
+  .section-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  /* EDUCATION */
+  .edu-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .edu-item:first-of-type { border-top: 1px solid var(--line); }
+
+  .edu-degree {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .edu-school {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .edu-year {
+    font-size: 0.82rem;
+    color: var(--muted);
+    white-space: nowrap;
+    font-weight: 500;
+    margin-top: 0.2rem;
+  }
+
+  /* EXPERIENCE */
+  .exp-item {
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .exp-item:first-of-type { border-top: 1px solid var(--line); }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .exp-period {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .exp-org {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+
+  .exp-desc {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* EYP */
+  .eyp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-bottom: 1.5rem;
+  }
+
+  .eyp-card {
+    background: var(--bg);
+    padding: 1.4rem 1.6rem;
+  }
+
+  .eyp-card-title {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+  }
+
+  .eyp-card-value {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .eyp-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* SKILLS */
+  .skills-group {
+    margin-bottom: 2rem;
+  }
+
+  .skills-group-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--text);
+    background: transparent;
+  }
+
+  /* CONTACT */
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--text);
+    transition: color 0.2s;
+  }
+
+  .contact-link:first-of-type { border-top: 1px solid var(--line); }
+
+  .contact-link:hover { color: var(--accent); }
+
+  .contact-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    color: var(--muted);
+    width: 100px;
+  }
+
+  .contact-value {
+    font-family: var(--serif);
+    font-size: 1rem;
+    flex: 1;
+  }
+
+  .contact-arrow { font-size: 1.1rem; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 5rem 1.5rem; }
+    #about { padding-top: 8rem; }
+    .eyp-grid { grid-template-columns: 1fr; }
+    .exp-header { flex-direction: column; gap: 0.2rem; }
+  }
+
+  /* fade in on load */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-label, .hero-name, .hero-sub, .hero-bio {
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-label { animation-delay: 0.05s; }
+  .hero-name  { animation-delay: 0.15s; }
+  .hero-sub   { animation-delay: 0.25s; }
+  .hero-bio   { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Hayk Mantashyan</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#eyp">EYP</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="hero-label">Political Science — LCC International University</p>
+  <h1 class="hero-name">Hayk<br>Mantashyan</h1>
+  <p class="hero-sub">Final-year student, youth leader, and aspiring international professional based in Klaipėda, Lithuania.</p>
+  <p class="hero-bio">
+    I'm graduating from LCC International University with a BA in Political Science, a GPA of 8.5/10, and five years of hands-on experience across NGOs, youth organisations, and international institutions. My background spans editorial work, intercultural communication, and youth facilitation — most visibly through my involvement with the European Youth Parliament, where I've held roles as Session President, Head of Jury, and Head Organiser.
+  </p>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">Education</p>
+
+  <div class="edu-item">
+    <div>
+      <div class="edu-degree">BA in Political Science</div>
+      <div class="edu-school">LCC International University — Klaipėda, Lithuania · GPA 8.5/10</div>
+    </div>
+    <div class="edu-year">2021 – 2026</div>
+  </div>
+
+  <div class="edu-item">
+    <div>
+      <div class="edu-degree">Erasmus Semester in Law</div>
+      <div class="edu-school">Károli Gáspár Reformed University — Budapest, Hungary</div>
+    </div>
+    <div class="edu-year">Feb – Jun 2024</div>
+  </div>
+
+  <div class="edu-item">
+    <div>
+      <div class="edu-degree">Workshops in New Media, Graphic Design, Writing &amp; Robotics</div>
+      <div class="edu-school">TUMO Center for Creative Technologies — Yerevan, Armenia</div>
+    </div>
+    <div class="edu-year">2017 – 2020</div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Experience</p>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <span class="exp-role">Camp Guide</span>
+      <span class="exp-period">Starting May 2026</span>
+    </div>
+    <div class="exp-org">Fokus Camps — Various locations around Munich, Germany</div>
+    <p class="exp-desc">Supervising and supporting children during daily activities, sports, creative workshops, and team-building games. Facilitating ice-breakers and problem-solving challenges, and collaborating with colleagues to deliver structured, week-long programs.</p>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <span class="exp-role">Intern</span>
+      <span class="exp-period">Feb – Apr 2026</span>
+    </div>
+    <div class="exp-org">International House Klaipėda — Klaipėda, Lithuania</div>
+    <p class="exp-desc">Supported daily operations and client service processes in a migrant integration and intercultural environment. Developed professional communication and organisational skills in a public service context.</p>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <span class="exp-role">Project Editor</span>
+      <span class="exp-period">Sep 2023 – Sep 2024</span>
+    </div>
+    <div class="exp-org">Youth Mix NGO — Remote</div>
+    <p class="exp-desc">Edited and refined Erasmus+ project proposals for clarity, coherence, and alignment with funding guidelines — contributing to a 25% increase in approval rate and helping secure 50,000+ EUR in funding. Provided editorial feedback across multiple project cycles.</p>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <span class="exp-role">English and Writing Tutor</span>
+      <span class="exp-period">Mar – Nov 2023</span>
+    </div>
+    <div class="exp-org">LCC International University — Klaipėda, Lithuania</div>
+    <p class="exp-desc">Reviewed and edited academic and non-academic texts for grammar, structure, tone, and clarity. Assisted students in refining drafts to meet formal and stylistic guidelines under time constraints.</p>
+  </div>
+</section>
+
+<!-- EYP -->
+<section id="eyp">
+  <p class="section-label">European Youth Parliament</p>
+  <h2 class="section-title">Years of shaping<br>youth democracy.</h2>
+
+  <div class="eyp-grid">
+    <div class="eyp-card">
+      <div class="eyp-card-title">Current Role</div>
+      <div class="eyp-card-value">International Coordinator, Executive Board EYP Lithuania 2026–27</div>
+    </div>
+    <div class="eyp-card">
+      <div class="eyp-card-title">Organising</div>
+      <div class="eyp-card-value">Head Organiser, Vilnius NSC</div>
+    </div>
+    <div class="eyp-card">
+      <div class="eyp-card-title">Presiding</div>
+      <div class="eyp-card-value">Session President at multiple conferences</div>
+    </div>
+    <div class="eyp-card">
+      <div class="eyp-card-title">Jury</div>
+      <div class="eyp-card-value">Head of Jury, Borås Regionals</div>
+    </div>
+  </div>
+
+  <p class="eyp-desc">
+    Since 2021, EYP has been my main arena for leadership and international work. As International Coordinator of EYP Lithuania's Executive Board, I act as the main contact point with the wider EYP network, coordinating incoming and outgoing delegations for conferences in Lithuania and abroad. Across sessions I've held roles as Session President, Head of Jury, and Head Organiser — overseeing debates, facilitating committees, and ensuring smooth execution of national selection conferences.
+  </p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Skills</p>
+
+  <div class="skills-group">
+    <div class="skills-group-label">Languages</div>
+    <div class="skills-tags">
+      <span class="tag">English — Advanced</span>
+      <span class="tag">Armenian — Native</span>
+      <span class="tag">Russian — Advanced</span>
+    </div>
+  </div>
+
+  <div class="skills-group">
+    <div class="skills-group-label">Professional</div>
+    <div class="skills-tags">
+      <span class="tag">Leadership</span>
+      <span class="tag">Crisis Management</span>
+      <span class="tag">Facilitation</span>
+      <span class="tag">Content Review &amp; Editing</span>
+      <span class="tag">Attention to Detail</span>
+      <span class="tag">Cross-cultural Communication</span>
+      <span class="tag">Event Management</span>
+    </div>
+  </div>
+
+  <div class="skills-group">
+    <div class="skills-group-label">Tools &amp; Digital</div>
+    <div class="skills-tags">
+      <span class="tag">Canva</span>
+      <span class="tag">Adobe Illustrator</span>
+      <span class="tag">Adobe Premiere Pro</span>
+      <span class="tag">MS Office</span>
+      <span class="tag">G-Suite</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Contact</p>
+  <h2 class="section-title">Get in touch.</h2>
+
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:hmantashyan1@gmail.com">
+      <span class="contact-label">Email</span>
+      <span class="contact-value">hmantashyan1@gmail.com</span>
+      <span class="contact-arrow">↗</span>
+    </a>
+    <a class="contact-link" href="tel:+37061174483">
+      <span class="contact-label">Phone</span>
+      <span class="contact-value">+370 611 74 483</span>
+      <span class="contact-arrow"></span>
+    </a>
+    <a class="contact-link" href="https://linkedin.com/in/yourprofile" target="_blank">
+      <span class="contact-label">LinkedIn</span>
+      <span class="contact-value">linkedin.com/in/yourprofile</span>
+      <span class="contact-arrow">↗</span>
+    </a>
+    <a class="contact-link" href="#">
+      <span class="contact-label">Location</span>
+      <span class="contact-value">Klaipėda, Lithuania</span>
+      <span class="contact-arrow"></span>
+    </a>
+  </div>
+</section>
+
+<footer>© 2026 Hayk Mantashyan</footer>
+
+</body>
+</html>
