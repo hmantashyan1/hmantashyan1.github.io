@@ -29,25 +29,50 @@
   }
 
   /* NAV */
- 
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.2rem 4rem;
+  background: white;
+  border-bottom: 1px solid var(--line);
+}
+
 .nav-name {
   color: black;
   font-family: var(--serif);
 }
 
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
 
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
 
-  .nav-links a {
-    text-decoration: none;
-    color: var(--muted);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
+.nav-links a:hover {
+  color: var(--text);
+}
 
-  .nav-links a:hover { color: var(--text); }
+ nav {
+  backdrop-filter: blur(6px);
+}
 
   /* SECTIONS */
   section {
@@ -515,7 +540,7 @@
       <span class="contact-value">+370 611 74 483</span>
       <span class="contact-arrow"></span>
     </a>
-    <a class="contact-link" href="https://linkedin.com/in/yourprofile" target="_blank">
+    <a class="contact-link" href="https://linkedin.com/in/hmantashian" target="_blank">
       <span class="contact-label">LinkedIn</span>
       <span class="contact-value">linkedin.com/in/hmantashian/</span>
       <span class="contact-arrow">↗</span>
